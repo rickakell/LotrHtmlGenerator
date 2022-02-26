@@ -5,7 +5,8 @@ with open("cardList.csv", 'r', encoding="ANSI", errors="ignore") as csvfile:
     cardList = csv.reader(csvfile)
     counter = 0
     for card in cardList:
-        if counter < 2 and counter > 0:
+        if counter == 1:
             tempCard = Card(card)
             tempCard.writeHtmlFile()
-        counter += 1
+        else:
+            counter += 1

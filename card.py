@@ -88,5 +88,5 @@ class Card:
     def writeHtmlFile(self):
         fileName = f"{self.Name}.html"
         print(f"Generating {fileName}...")
-        with open(f"{fileName}", "w+", encoding="ANSI") as file:
+        with open(f"html/{fileName}", "w+", encoding="ANSI") as file:
             file.writelines(self.GenerateHtmlString())

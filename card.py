@@ -1,8 +1,11 @@
 class Card:
     def __init__(self, cardInfoList):
         from re import sub
+        from unidecode import unidecode
         self.ID = cardInfoList[0]
-        self.Name = sub(" \(.*\)","",cardInfoList[1])
+        self.rawName = cardInfoList[1]
+        self.Name = sub(" ?\(.*\)","",cardInfoList[1])
+        self.plainName = unidecode(self.rawName)
         self.D1 = cardInfoList[2]
         self.D2 = cardInfoList[3]
         self.D3 = cardInfoList[4]
@@ -86,7 +89,7 @@ class Card:
 """
     
     def writeHtmlFile(self):
-        fileName = f"{self.Name}.html"
+        fileName = f"{self.plainName}.html"
         print(f"Generating {fileName}...")
         with open(f"html/{fileName}", "w+", encoding="ANSI") as file:
             file.writelines(self.GenerateHtmlString())
